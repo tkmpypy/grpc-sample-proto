@@ -36,14 +36,30 @@
     ```sh
     $ go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
     ```
+- [Buf](https://docs.buf.build)
 
 ## Usage
+
+### Lint
+
+```sh
+buf lint
+```
+or
+```sh
+buf lint --error-format=json
+```
+
+### Build
+
+```sh
+buf build
+```
 
 ### Generate Code
 
 ```sh
-cd ./todo/todo
-protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./todo.proto
+buf generate todoapis
 ```
 
 ### Generate Doc

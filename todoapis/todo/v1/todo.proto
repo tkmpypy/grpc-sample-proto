@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package todo.v1;
+
+service TodoService {
+  rpc GetTodo(GetTodoRequest) returns (GetTodoResponse) {}
+}
+
+message GetTodoRequest {
+  int64 todo_id = 1;
+}
+
+message GetTodoResponse {
+  int64 todo_id = 1;
+  string value = 2;
+  bool done = 3;
+}
