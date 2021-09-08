@@ -54,8 +54,9 @@ message AddTodoResponse{
 }
 
 message UpdateTodoRequest{
-  string value = 1;
-  bool done = 2;
+  int64 todo_id = 1;
+  string value = 2;
+  bool done = 3;
 }
 
 message UpdateTodoResponse{
