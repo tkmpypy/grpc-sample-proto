@@ -3,13 +3,32 @@ syntax = "proto3";
 package todo.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 service TodoService {
-  rpc GetTodo(GetTodoRequest) returns (GetTodoResponse) {}
-  rpc GetTodos(GetTodosRequest) returns (GetTodosResponse) {}
+  rpc GetTodo(GetTodoRequest) returns (GetTodoResponse) {
+    option (google.api.http) = {
+      get: "/v1/todos/{todo_id}"
+    };
+  }
+  rpc GetTodos(GetTodosRequest) returns (GetTodosResponse) {
+    option (google.api.http) = {
+      get: "/v1/todos"
+    };
+  }
   rpc GetStreamTodos(GetStreamTodosRequest) returns (stream GetStreamTodosResponse) {}
-  rpc AddTodo(AddTodoRequest) returns (AddTodoResponse) {}
-  rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  rpc AddTodo(AddTodoRequest) returns (AddTodoResponse) {
+    option (google.api.http) = {
+      post: "/v1/todos"
+      body: "*"
+    };
+  }
+  rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse) {
+    option (google.api.http) = {
+      patch: "/v1/todos/{todo_id}"
+      body: "*"
+    };
+  }
 }
 
 message Todo {
@@ -22,7 +41,6 @@ message Todo {
 
 message GetTodoRequest {
   int64 todo_id = 1;
-  bool done = 2;
 }
 
 message GetTodosRequest {
