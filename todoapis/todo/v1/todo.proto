@@ -44,9 +44,7 @@ message GetTodoRequest {
 }
 
 message GetTodosRequest {
-  int64 limit = 1;
-  int64 page = 2;
-  optional bool done = 3;
+  optional bool done = 1;
 }
 
 message GetStreamTodosRequest {}
